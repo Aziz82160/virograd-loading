@@ -154,13 +154,14 @@
     position:relative;z-index:5;
     border-top:1px solid var(--steel-line);
     background:linear-gradient(180deg, rgba(16,13,10,.2), rgba(16,13,10,.78));
-    padding-block:14px 18px;
+    padding-block:14px 150px;
     display:flex;flex-direction:column;gap:10px;
   }
   .ticker{
     display:flex;align-items:baseline;gap:10px;
     font-size:.85rem;letter-spacing:.03em;color:var(--paper-dim);
     min-height:1.4em;
+    max-width:min(62ch,68%);
   }
   .ticker .tag{color:var(--rust);font-weight:700;letter-spacing:.1em;flex:none;}
   .ticker .msg{transition:opacity .4s ease;}
