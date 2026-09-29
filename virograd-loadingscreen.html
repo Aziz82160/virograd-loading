@@ -49,12 +49,6 @@
   @-webkit-keyframes sitelight{0%,100%{opacity:1;}4%{opacity:.3;}6%{opacity:1;}7%{opacity:.15;}9%{opacity:1;}52%{opacity:1;}53%{opacity:.4;}55%{opacity:1;}}
   @keyframes sitelight{0%,100%{opacity:1;}4%{opacity:.3;}6%{opacity:1;}7%{opacity:.15;}9%{opacity:1;}52%{opacity:1;}53%{opacity:.4;}55%{opacity:1;}}
 
-  /* Filigrane : taille explicite en % (avant : min() non supporté = symbole géant) */
-  .biohazard-watermark{
-    position:fixed;right:-3%;top:-8%;width:34%;height:auto;
-    opacity:.05;z-index:1;pointer-events:none;
-    -webkit-transform:rotate(8deg);transform:rotate(8deg);
-  }
 
   /* ---------- barre du haut : toute la largeur ---------- */
   header.topbar{
@@ -70,7 +64,6 @@
     font-family:'Big Shoulders Stencil',sans-serif;font-weight:700;
     letter-spacing:.08em;font-size:1.4rem;color:#e9e2d2;white-space:nowrap;
   }
-  .wordmark svg{width:1.7rem;height:1.7rem;fill:#b9c93f;vertical-align:middle;margin:-.2rem .6rem 0 0;}
   .status{
     float:right;white-space:nowrap;
     font-size:.85rem;letter-spacing:.12em;color:#a89d87;text-transform:uppercase;
@@ -100,14 +93,11 @@
     left:6%;top:47%;width:60%;
     -webkit-transform:translateY(-50%);transform:translateY(-50%);
   }
-  .stamp{
+  .logo{
     position:absolute;z-index:5;
-    right:7%;top:24%;
-    border:2px solid #c25a34;color:#c25a34;
-    padding:.45rem 1rem;
-    font-size:.95rem;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;
-    -webkit-transform:rotate(-4deg);transform:rotate(-4deg);
-    border-radius:2px;background:rgba(154,36,21,.08);
+    right:4%;top:53%;width:40rem;height:auto;
+    -webkit-transform:translateY(-50%);transform:translateY(-50%);
+    -webkit-filter:drop-shadow(0 12px 40px rgba(0,0,0,.7));filter:drop-shadow(0 12px 40px rgba(0,0,0,.7));
   }
   .kicker{
     margin:0 0 .9rem;
@@ -129,7 +119,7 @@
   .tagline{margin:0;max-width:40rem;font-size:1.2rem;color:#a89d87;line-height:1.5;}
   .tagline b{color:#e9e2d2;font-weight:400;border-bottom:1px solid #7a3620;}
 
-  /* ---------- barre du bas : toute la largeur ---------- */
+  /* ---------- aide + liens ---------- */
   .infos{
     margin-top:2.6rem;padding-top:1.2rem;
     border-top:1px solid rgba(110,122,38,.5);
@@ -149,7 +139,8 @@
 
   /* écrans étroits / portrait */
   .narrow main.hero{width:88%;}
-  .narrow .stamp{display:none;}
+  .mid .logo{width:30rem;right:2%;}
+  .narrow .logo{display:none;}
 </style>
 
 <div id="scene"></div>
@@ -194,21 +185,9 @@
   </g>
 </svg>
 
-<svg class="biohazard-watermark" viewBox="0 0 200 200" aria-hidden="true">
-  <g fill="none" stroke="#b9c93f" stroke-width="6">
-    <circle cx="100" cy="100" r="14"/>
-    <g>
-      <path d="M100 86 a30 30 0 0 1 26 45" />
-      <path d="M100 86 a30 30 0 0 0 -26 45" transform="rotate(120 100 100)"/>
-      <path d="M100 86 a30 30 0 0 1 26 45" transform="rotate(240 100 100)"/>
-    </g>
-  </g>
-</svg>
-
 <div class="frame">
   <header class="topbar">
     <div class="wordmark">
-      <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 1 3 3 3 3 0 0 1-1 2.24V9a1 1 0 0 0 2 0h2a1 1 0 0 1 0 2h-2a1 1 0 0 0-1 1v.1a7 7 0 0 1 4.584 4.9 1 1 0 1 1-1.938.49A5 5 0 0 0 13 13.08V15a1 1 0 0 1-2 0v-1.92a5 5 0 0 0-3.646 3.42 1 1 0 1 1-1.938-.49A7 7 0 0 1 10 11.1V11a1 1 0 0 0-1-1H7a1 1 0 0 1 0-2h2a1 1 0 0 0 2 0V7.24A3 3 0 0 1 9 5a3 3 0 0 1 3-3zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>
       EPOCH NETWORK
     </div>
     <div class="status">
@@ -222,7 +201,7 @@
   </header>
   <audio id="bgm" src="music.mp3" loop preload="auto"></audio>
 
-  <div class="stamp">Poste&nbsp;de&nbsp;contrôle</div>
+  <img class="logo" src="logo.png" alt="Virograd">
 
   <main class="hero">
     <p class="kicker">Epoch présente</p>
@@ -254,7 +233,7 @@
     document.documentElement.style.fontSize = size + 'px';
     var root = document.documentElement;
     var narrow = (w/h) < 1.2;
-    root.className = narrow ? 'narrow' : '';
+    root.className = narrow ? 'narrow' : ((w/h) < 1.5 ? 'mid' : '');
   }
   rescale();
   window.addEventListener('resize', rescale);
